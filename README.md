@@ -21,7 +21,7 @@ This sample shows that Gradle does **not** suffer from that issue.
 - `v2` — multi-jar evolution: `commons-compress-core.jar`, `commons-compress-tar.jar`, ..., and `commons-compress.pom` bom
 - `lib-user-gradle` — sample Gradle project that depends on both old `commons-compress:1.0.0` and new `commons-compress-tar:2.0.0`
 - `lib-user-maven` — sample Maven project that depends on both old `commons-compress:1.0.0` and new `commons-compress-tar:2.0.0`
-- `lib-user-maven4` — sample Maven 4 project that depends on both old `commons-compress:1.0.0` and new `commons-compress-tar:2.0.0`
+- `lib-user-maven4` — sample Maven 4 project that uses two libs: `lib-a` that depends on `commons-compress:1.0.0` and `lib-b` that depends on `commons-compress-tar:2.0.0`
 
 # How to run
 
@@ -82,11 +82,15 @@ Maven does not use `<dependencyManagement>` from `commons-compress-tar`, so it d
 This indicates **Maven 4.0.0-rc-4 is affected** by JLBP-6.
 
 ```
-[INFO] --- dependency:3.9.0:tree (default-cli) @ lib-user-maven ---
-[INFO] org.example:lib-user-maven:jar:1.0.0
-[INFO] +- org.example:commons-compress:jar:1.0.0:compile
-[INFO] \- org.example:commons-compress-tar:jar:2.0.0:compile
-[INFO]    \- org.example:commons-compress-core:jar:2.0.0:compile
+[INFO] --- dependency:3.9.0:tree (default-cli) @ app ---
+[INFO] org.example:app:pom:1.0.0
+[INFO] +- org.example:lib-a:jar:1.0.0:compile
+[INFO] |  \- org.example:commons-compress:jar:1.0.0:compile
+[INFO] \- org.example:lib-b:jar:1.0.0:compile
+[INFO]    \- org.example:commons-compress-tar:jar:2.0.0:compile
+[INFO]       \- org.example:commons-compress-core:jar:2.0.0:compile
+[INFO] Copying org.example:app:pom:1.0.0 to project local repository
+[INFO] Copying org.example:app:pom:consumer:1.0.0 to project local repository
 ```
 
 # Published artifacts
