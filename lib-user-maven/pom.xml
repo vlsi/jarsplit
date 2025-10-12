@@ -3,18 +3,38 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.example</groupId>
-    <artifactId>lib-user-maven</artifactId>
+    <artifactId>app</artifactId>
     <version>1.0.0</version>
     <dependencies>
         <dependency>
             <groupId>org.example</groupId>
-            <artifactId>commons-compress</artifactId>
+            <artifactId>lib-uses-v1</artifactId>
             <version>1.0.0</version>
         </dependency>
         <dependency>
             <groupId>org.example</groupId>
-            <artifactId>commons-compress-tar</artifactId>
+            <artifactId>lib-uses-v2</artifactId>
             <version>2.0.0</version>
         </dependency>
     </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.5.1</version>
+                <executions>
+                    <execution>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>org.example.app.Main</mainClass>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>

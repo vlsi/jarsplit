@@ -1,5 +1,5 @@
-package org.example.xz;
+package org.example;
 
-public class XzCompressor {
+public class CoreVersion {
     public static String VERSION = new String("1.0.0");
 }

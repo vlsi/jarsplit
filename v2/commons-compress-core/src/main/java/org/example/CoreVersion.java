@@ -1,5 +1,5 @@
-package org.example.tar;
+package org.example;
 
-public class TarCompressor {
+public class CoreVersion {
     public static String VERSION = new String("2.0.0");
 }

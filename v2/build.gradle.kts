@@ -18,16 +18,23 @@ dependencies {
     api(project("commons-compress-xz"))
 }
 
-publishing {
-    publications {
-        create<MavenPublication>("maven") {
-            from(components["javaPlatform"])
+subprojects {
+    apply(plugin = "java-library")
+    apply(plugin = "maven-publish")
+}
+
+allprojects {
+    publishing {
+        publications {
+            create<MavenPublication>("maven") {
+                from(components[if (project.parent == null) "javaPlatform" else "java"])
+            }
         }
-    }
-    repositories {
-        maven {
-            name = "repo"
-            url = uri(rootProject.layout.projectDirectory.dir("../repo"))
+        repositories {
+            maven {
+                name = "repo"
+                url = uri(rootProject.layout.projectDirectory.dir("../repo"))
+            }
         }
     }
 }
