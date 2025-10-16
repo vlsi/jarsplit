@@ -1,7 +1,8 @@
 #!/bin/sh
 
-(cd v1; ./gradlew publishAllPublicationsToRepoRepository publishToMavenLocal)
-(cd v2; ./gradlew publishAllPublicationsToRepoRepository publishToMavenLocal)
-(cd lib-user-gradle; ./gradlew dependencies --configuration runtimeClasspath run)
-(cd lib-user-maven; ./mvnw -V dependency:tree verify)
-(cd lib-user-maven4; ./mvnw -V dependency:tree verify)
+(cd v1.0; ./gradlew publishAllPublicationsToRepoRepository publishToMavenLocal) && \
+(cd v1.1; ./gradlew publishAllPublicationsToRepoRepository publishToMavenLocal) && \
+(cd app-gradle; ./gradlew dependencies --configuration runtimeClasspath run) && \
+(cd app-maven4; ./mvnw -V dependency:tree verify)
+
+#(cd app-maven; ./mvnw -V dependency:tree verify) && \
